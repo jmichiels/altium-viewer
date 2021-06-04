@@ -62,7 +62,7 @@ func UploadProject(projectFile io.Reader) (id string, err error) {
 	if err := json.NewDecoder(res.Body).Decode(&resJson); err != nil {
 		return "", err
 	}
-	if resJson.Status != "Complete" {
+	if resJson.Status == "Error" {
 		return "", &resJson
 	}
 	return resJson.DesignId, nil
